@@ -22,7 +22,7 @@ def load_test_model(model_path):
     model.eval()
     return model
 
-model_path = './model_epoch_48.pth'
+model_path = 'model_epoch_48.pth'
 
 model = load_test_model(model_path)
 
