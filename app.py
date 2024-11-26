@@ -1,13 +1,14 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import torch
 from torchvision import models, transforms
 from PIL import Image
 import os
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 print(f"Device: {device}")
 
-model_path = 'model_epoch_48.pth'
+model_path  = os.path.join(os.getcwd(), 'model_epoch_48.pth')
+print(f"Current working directory: {os.getcwd()}")
 
 def load_test_model(model_path):
     model = models.resnet50(pretrained=True)
