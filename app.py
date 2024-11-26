@@ -34,10 +34,15 @@ transform = transforms.Compose([
 ])
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "*"}})
+CORS(app)
 
 @app.route('/predict', methods=['POST'])
 def predict():
+
+    if request.method == 'OPTIONS':
+        return '', 204
+    
+
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     
@@ -54,7 +59,7 @@ def predict():
         _, predicted_class = torch.max(outputs, 1)
 
     disease_names = ['Alphid', 'Black Rust', 'Blast', 'Brown Rust', 'Common root Rot',  
-                     'Fusarium Head Blight', 'Healthy', 'Leaf Blight', 'Mildew', 'Mite',
+                     'Fusarium Head Blight', 'Healthy', 'Leaf Blight', 'Mildew', 'Mites',
                      'Septoria', 'Smut', 'Stemfly', 'Tanspot', 'Yellow Rust']
     
     predicted_disease = disease_names[predicted_class.item()]
