@@ -3,6 +3,7 @@ import torch
 from torchvision import models, transforms
 from PIL import Image
 import os
+from flask_cors import CORS
 
 device = torch.device("cpu")
 print(f"Device: {device}")
@@ -33,7 +34,7 @@ transform = transforms.Compose([
 ])
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/predict', methods=['POST'])
 def predict():
