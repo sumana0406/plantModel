@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify
 import torch
 from torchvision import models, transforms
 from PIL import Image
 import os
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 device = torch.device("cpu")
@@ -34,7 +34,13 @@ transform = transforms.Compose([
 ])
 
 app = Flask(__name__)
-CORS(app)
+cors_options = {
+    "origins": ["https://wheatplant-ea05f.web.app"],  # Frontend origin
+    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Allowed methods
+    "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],  # Allowed headers
+}
+
+CORS(app, resources={r"/*": cors_options})
 
 @app.route('/predict', methods=['POST'])
 def predict():
