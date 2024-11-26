@@ -34,7 +34,7 @@ transform = transforms.Compose([
 ])
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/predict": {"origins": "*"}})
 
 @app.route('/predict', methods=['POST'])
 def predict():
