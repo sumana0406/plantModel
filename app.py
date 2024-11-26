@@ -7,7 +7,7 @@ import os
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Device: {device}")
 
-model_path = '/model_epoch_48.pth'
+model_path = 'model_epoch_48.pth'
 
 def load_test_model(model_path):
     model = models.resnet50(pretrained=True)
