@@ -7,8 +7,7 @@ import os
 device = torch.device("cpu")
 print(f"Device: {device}")
 
-model_path  = os.path.join(os.getcwd(), 'model_epoch_48')
-print(f"Current working directory: {os.getcwd()}")
+model_path  = "model_epoch_48_final.pth"
 
 def load_test_model(model_path):
     model = models.resnet50(pretrained=True)
