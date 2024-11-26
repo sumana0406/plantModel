@@ -7,7 +7,7 @@ import os
 device = torch.device("cpu")
 print(f"Device: {device}")
 
-model_path  = os.path.join(os.getcwd(), 'model_epoch_48.pth')
+model_path  = os.path.join(os.getcwd(), 'model_epoch_48')
 print(f"Current working directory: {os.getcwd()}")
 
 def load_test_model(model_path):
