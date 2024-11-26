@@ -22,7 +22,7 @@ def load_test_model(model_path):
     model.eval()
     return model
 
-model_path = r'C:\self\wheatPlant\PlantDD-1\ai_backend\model_epoch_48.pth'
+model_path = './model_epoch_48.pth'
 
 model = load_test_model(model_path)
 
@@ -34,9 +34,6 @@ transform = transforms.Compose([
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('modelPg.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -64,4 +61,5 @@ def predict():
     return jsonify({'predicted_disease': predicted_disease})
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=5000)
